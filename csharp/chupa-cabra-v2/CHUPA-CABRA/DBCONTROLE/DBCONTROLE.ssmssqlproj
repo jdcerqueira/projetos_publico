@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<SqlWorkbenchSqlProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="DBCONTROLE">
+  <Items>
+    <LogicalFolder Name="Connections" Type="2" Sorted="true">
+      <Items>
+        <ConnectionNode Name="1acpjw008\sql17:SCOPUS\jcerqueira">
+          <Created>2019-05-10T17:03:40.2957911-03:00</Created>
+          <Type>SQL</Type>
+          <Server>1acpjw008\sql17</Server>
+          <UserName />
+          <Authentication>Windows Authentication</Authentication>
+          <InitialDB />
+          <LoginTimeout>30</LoginTimeout>
+          <ExecutionTimeout>0</ExecutionTimeout>
+          <ConnectionProtocol>NotSpecified</ConnectionProtocol>
+          <ApplicationName />
+        </ConnectionNode>
+        <ConnectionNode Name="labs178\des120a:SCOPUS\jcerqueira">
+          <Created>2019-05-02T10:43:25.3933624-03:00</Created>
+          <Type>SQL</Type>
+          <Server>labs178\des120a</Server>
+          <UserName />
+          <Authentication>Windows Authentication</Authentication>
+          <InitialDB />
+          <LoginTimeout>30</LoginTimeout>
+          <ExecutionTimeout>0</ExecutionTimeout>
+          <ConnectionProtocol>NotSpecified</ConnectionProtocol>
+          <ApplicationName />
+        </ConnectionNode>
+      </Items>
+    </LogicalFolder>
+    <LogicalFolder Name="Queries" Type="0" Sorted="true">
+      <Items>
+        <FileNode Name="01 - Cria_DBCONTROLE.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:labs178\des120a:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>labs178\des120a</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>01 - Cria_DBCONTROLE.sql</FullPath>
+        </FileNode>
+        <FileNode Name="02 - Cria_Tabelas.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:labs178\des120a:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>labs178\des120a</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>02 - Cria_Tabelas.sql</FullPath>
+        </FileNode>
+        <FileNode Name="03 - Carrega Script Produção.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:1acpjw008\sql17:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>1acpjw008\sql17</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>03 - Carrega Script Produção.sql</FullPath>
+        </FileNode>
+        <FileNode Name="dbo.fFormataTexto.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:labs178\des120a:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>labs178\des120a</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>dbo.fFormataTexto.sql</FullPath>
+        </FileNode>
+        <FileNode Name="listagem.pSelContasAplicadas.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:labs178\des120a:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>labs178\des120a</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>listagem.pSelContasAplicadas.sql</FullPath>
+        </FileNode>
+        <FileNode Name="listagem.pSelContratosAplicados.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:labs178\des120a:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>labs178\des120a</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>listagem.pSelContratosAplicados.sql</FullPath>
+        </FileNode>
+        <FileNode Name="listagem.pSelEmpresasAplicadas.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:labs178\des120a:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>labs178\des120a</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>listagem.pSelEmpresasAplicadas.sql</FullPath>
+        </FileNode>
+        <FileNode Name="listagem.pSelMastersAplicados.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:labs178\des120a:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>labs178\des120a</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>listagem.pSelMastersAplicados.sql</FullPath>
+        </FileNode>
+        <FileNode Name="listagem.pSelPerfisAplicados.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:labs178\des120a:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>labs178\des120a</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>listagem.pSelPerfisAplicados.sql</FullPath>
+        </FileNode>
+        <FileNode Name="listagem.pSelProcuradoresAplicados.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:labs178\des120a:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>labs178\des120a</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>listagem.pSelProcuradoresAplicados.sql</FullPath>
+        </FileNode>
+        <FileNode Name="SQLQuery1.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:1acpjw008\sql17:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>1acpjw008\sql17</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>SQLQuery1.sql</FullPath>
+        </FileNode>
+      </Items>
+    </LogicalFolder>
+    <LogicalFolder Name="Miscellaneous" Type="3" Sorted="true">
+      <Items />
+    </LogicalFolder>
+  </Items>
+</SqlWorkbenchSqlProject>
