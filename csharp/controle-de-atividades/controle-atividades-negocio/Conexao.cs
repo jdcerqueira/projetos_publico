@@ -42,13 +42,15 @@ namespace controle_atividades_negocio
             {
                 try
                 {
+                    mensagem = "Diretório atualizado com sucesso.";
+
                     if (!Directory.Exists(diretorio))
                     {
                         Directory.CreateDirectory(diretorio);
+                        mensagem = "Diretório criado com sucesso.";
                     }
 
                     status = true;
-                    mensagem = "Diretório criado com sucesso.";
                 }
                 catch (Exception ex)
                 {

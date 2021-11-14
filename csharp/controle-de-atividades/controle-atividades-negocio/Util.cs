@@ -110,7 +110,7 @@ namespace controle_atividades_negocio
                 return 1;
             }
 
-            public const String versaoProduto = "v.1.5.2";
+            public const String versaoProduto = "v.1.5.3"; //Zerado os segundos no lançamento de horas e persistência do ponto ao clicar nos botões de ação.
             public const Double minutosDiaCheio = 1439;
         }
     }

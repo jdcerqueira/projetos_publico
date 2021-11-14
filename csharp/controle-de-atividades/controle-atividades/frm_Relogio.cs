@@ -48,6 +48,15 @@ namespace controle_atividades
             return lblDataHora.Text;
         }
 
+        public String DataHora(Boolean zeraSegundos)
+        {
+            DateTime dtAgora = Util.StringToDatetime(lblDataHora.Text);
+            dtAgora = dtAgora.Subtract(new TimeSpan(0,0,dtAgora.TimeOfDay.Duration().Seconds));
+
+            //Console.WriteLine($@"{Util.StringToDatetime(lblDataHora.Text).ToString()} >> {dtAgora}");
+            return dtAgora.ToString();
+        }
+
         public String DataDiaAberturaTela()
         {
             return DataAberturaTela.Date.ToString("dd/MM/yyyy");

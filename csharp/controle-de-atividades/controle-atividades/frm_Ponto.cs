@@ -21,6 +21,8 @@ namespace controle_atividades
         String Saida                        = "";
         String TerminoExpedientePrevisto    = "";
         String SaldoHoras                   = "";
+        Boolean flcriaArquivoInicial          = false;
+
         frm_Relogio _ApresentaData_UC = new frm_Relogio();
         DateTime HorasExpediente = DateTime.ParseExact("08:00:00","HH:mm:ss",System.Globalization.CultureInfo.InvariantCulture);
 
@@ -38,10 +40,14 @@ namespace controle_atividades
             carregaDadosPontoDia();
             regraBotoesPonto();
 
+            // cria arquivos persistido
+            if(Entrada == "") // Quando não foi carregado um arquivo do dia já existente
+                criaArquivoInicial();
+
             this.Text += " - " + Util.Constantes.versaoProduto;
         }
 
-
+        
         private void btnEntrada_Click(object sender, EventArgs e)
         {
             registraEntrada();
@@ -69,6 +75,9 @@ namespace controle_atividades
             regraBotoesPonto();
             defineHoraExtra_SaldoHoras();
             encerraAtividadesSemDataFinal();
+
+            if (flcriaArquivoInicial)
+                atualizaArquivo();
         }
 
         private void btnIniciarTarefa_Click(object sender, EventArgs e)

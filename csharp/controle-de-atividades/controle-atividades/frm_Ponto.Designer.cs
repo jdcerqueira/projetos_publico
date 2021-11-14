@@ -114,10 +114,10 @@ namespace controle_atividades
                     dgvAtividades.Rows[i].Cells[3].Value = Saida;
         }
 
-        private void finalizaDia()
+
+        private List<Atividades> atividadesDoDia()
         {
             List<Atividades> atividades = new List<Atividades>();
-
             foreach (DataGridViewRow row in dgvAtividades.Rows)
             {
 
@@ -147,7 +147,7 @@ namespace controle_atividades
             foreach (DataGridViewRow row in dgvAtividadesEncerradas.Rows)
             {
                 DateTime? previsao = null;
-                if (row.Cells["Previsao"].Value!= null && row.Cells["Previsao"].Value.ToString() != "")
+                if (row.Cells["Previsao"].Value != null && row.Cells["Previsao"].Value.ToString() != "")
                     previsao = Util.StringToDatetime(row.Cells["Previsao"].Value.ToString());
 
                 atividades.Add(new Atividades()
@@ -164,7 +164,11 @@ namespace controle_atividades
                     previsao = previsao
                 });
             }
+            return atividades;
+        }
 
+        private Ponto criaPonto(List<Atividades> atividades)
+        {
             Ponto ponto = new Ponto()
             {
                 Expediente = new Intervalo()
@@ -183,10 +187,18 @@ namespace controle_atividades
                     fim = Janta_Fim
                 },
                 SaldoHoras = SaldoHoras,
-                HorasExtras = dgvPonto.Rows[0].Cells[7].Value.ToString(),
+                HorasExtras = dgvPonto.Rows[0].Cells[7].Value == null || dgvPonto.Rows[0].Cells[7].Value.ToString() == "" ? "" : dgvPonto.Rows[0].Cells[7].Value.ToString(),
                 Atividades = atividades
             };
 
+            return ponto;
+        }
+
+        private void finalizaDia()
+        {
+
+            List<Atividades> atividades = atividadesDoDia();
+            Ponto ponto = criaPonto(atividades);
             ponto.criaArquivo(ponto, _ApresentaData_UC.DataDiaAberturaTela());
         }
 
@@ -236,6 +248,22 @@ namespace controle_atividades
             {
                 incluiLinhaAtividadeEncerrada(atv);
             }
+        }
+
+        private void criaArquivoInicial()
+        {
+            if(MessageBox.Show("Deseja criar o arquivo inicial do dia de hoje?","Persiste arquivo de ponto",MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes) 
+            {
+                atualizaArquivo();
+                flcriaArquivoInicial = true;
+            }
+            
+        }
+
+        private void atualizaArquivo()
+        {
+            Ponto ponto = criaPonto(atividadesDoDia());
+            ponto.criaArquivo(ponto, _ApresentaData_UC.DataDiaAberturaTela());
         }
 
         private void carregaDadosPontoDia()
@@ -365,7 +393,7 @@ namespace controle_atividades
 
         private void registraEntrada()
         {
-            Entrada = Entrada == "" ? new frm_Relogio().DataHora() : Entrada;
+            Entrada = Entrada == "" ? new frm_Relogio().DataHora(true) : Entrada;
             if (dgvPonto.Rows.Count > 0)
             {
                 dgvPonto.Rows[0].Cells[0].Value = Util.Hora(Entrada);
@@ -375,13 +403,16 @@ namespace controle_atividades
             TerminoExpedientePrevisto = Util.StringToDatetime(Entrada).Add(HorasExpediente.TimeOfDay).ToString();
             SaldoHoras = Util.StringToDatetime(Entrada).Subtract(Util.StringToDatetime(TerminoExpedientePrevisto)).ToString();
             dgvPonto.Rows[0].Cells[6].Value = SaldoHoras;
+
+            if (flcriaArquivoInicial)
+                atualizaArquivo();
         }
 
         private void registraIntervaloInicio()
         {
             if (Almoco_Ini != "")
             {
-                Janta_Ini = Janta_Ini == "" ? new frm_Relogio().DataHora() : Janta_Ini;
+                Janta_Ini = Janta_Ini == "" ? new frm_Relogio().DataHora(true) : Janta_Ini;
                 if (dgvPonto.Rows.Count > 0)
                 {
                     dgvPonto.Rows[0].Cells[3].Value = Util.Hora(Janta_Ini);
@@ -389,7 +420,7 @@ namespace controle_atividades
             }
             else
             {
-                Almoco_Ini = Almoco_Ini == "" ? new frm_Relogio().DataHora() : Almoco_Ini;
+                Almoco_Ini = Almoco_Ini == "" ? new frm_Relogio().DataHora(true) : Almoco_Ini;
                 if (dgvPonto.Rows.Count > 0)
                 {
                     dgvPonto.Rows[0].Cells[1].Value = Util.Hora(Almoco_Ini);
@@ -398,6 +429,9 @@ namespace controle_atividades
 
             if (MessageBox.Show("Deseja exibir o intervalo de 1h?", "Intervalo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 new frm_RelogioCongelaTela(3600).ShowDialog();
+
+            if (flcriaArquivoInicial)
+                atualizaArquivo();
         }
 
 
@@ -407,7 +441,7 @@ namespace controle_atividades
 
             if (Almoco_Fim != "")
             {
-                Janta_Fim = Janta_Fim == "" ? new frm_Relogio().DataHora() : Janta_Fim;
+                Janta_Fim = Janta_Fim == "" ? new frm_Relogio().DataHora(true) : Janta_Fim;
                 if (dgvPonto.Rows.Count > 0)
                 {
                     dgvPonto.Rows[0].Cells[4].Value = Util.Hora(Janta_Fim);
@@ -417,7 +451,7 @@ namespace controle_atividades
             }
             else
             {
-                Almoco_Fim = Almoco_Fim == "" ? new frm_Relogio().DataHora() : Almoco_Fim;
+                Almoco_Fim = Almoco_Fim == "" ? new frm_Relogio().DataHora(true) : Almoco_Fim;
                 if (dgvPonto.Rows.Count > 0)
                 {
                     dgvPonto.Rows[0].Cells[2].Value = Util.Hora(Almoco_Fim);
@@ -428,11 +462,14 @@ namespace controle_atividades
             Intervalo = Util.StringToDatetime(Entrada).Add(Util.StringToTimesPan(Intervalo)).ToString();
 
             _ApresentaData_UC.atualizaRelogio(Intervalo, HorasExpediente.ToString());
+
+            if (flcriaArquivoInicial)
+                atualizaArquivo();
         }
 
         private void registraSaida()
         {
-            Saida = Saida == "" ? new frm_Relogio().DataHora() : Saida;
+            Saida = Saida == "" ? new frm_Relogio().DataHora(true) : Saida;
             if (dgvPonto.Rows.Count > 0)
             {
                 dgvPonto.Rows[0].Cells[5].Value = Util.Hora(Saida);
