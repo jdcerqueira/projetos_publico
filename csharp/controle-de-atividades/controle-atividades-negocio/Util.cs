@@ -20,6 +20,9 @@ namespace controle_atividades_negocio
 
         public static DateTime StringToDatetime(String DataHora)
         {
+            if (DataHora == null || DataHora == "")
+                return new DateTime();
+
             return DateTime.ParseExact(DataHora, "dd/MM/yyyy HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
         }
 
@@ -110,7 +113,7 @@ namespace controle_atividades_negocio
                 return 1;
             }
 
-            public const String versaoProduto = "v.1.5.3"; //Zerado os segundos no lançamento de horas e persistência do ponto ao clicar nos botões de ação.
+            public const String versaoProduto = "v.1.5.3.1"; // Correção na função de retorno do DateTime quando o parametro string vem como vazio ou em branco.
             public const Double minutosDiaCheio = 1439;
         }
     }
